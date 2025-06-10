@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Propuestas Web para Ferrosider S.A. - Versión Final Corregida</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+body {
+font-family: 'Poppins', sans-serif;
+background-color: #0A2540;
+background-image: linear-gradient(180deg, #0A2540 0%, #0E3A5F 100%);
+color: #BFC9D9;
+scroll-padding-top: 140px;
+}
+html {
+    scroll-behavior: smooth;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Poppins', sans-serif;
+color: #FFFFFF;
+}
+.chart-container {
+position: relative;
+width: 100%;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+height: 400px;
+max-height: 50vh;
+}
+@media (max-width: 768px) {
+.chart-container {
+height: 350px;
+max-height: 55vh;
+}
+}
+.section-title {
+    color: #69C9F0;
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(105, 201, 240, 0.3);
+    margin-bottom: 2.5rem;
+}
+.card {
+    background-color: rgba(26, 43, 64, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+    border-color: rgba(105, 201, 240, 0.5);
+}
+.sticky-nav {
+    position: sticky;
+    top: 94px;
+    z-index: 40;
+    background-color: rgba(10, 37, 64, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sticky-nav a {
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-weight: 600;
+    color: #BFC9D9;
+}
+.sticky-nav a:hover {
+    color: #FFFFFF;
+    background-color: rgba(0, 96, 242, 0.3);
+}
+.company-logo-card {
+    height: 80px; /* h-20 */
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+}
+.portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    color: #BFC9D9;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.portfolio-link:hover {
+    color: #69C9F0;
+    transform: translateX(2px);
+}
+.portfolio-link span {
+    margin-right: 0.5rem;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+.portfolio-link:hover span {
+    color: #69C9F0;
+}
+.strength-weakness-icon {
+    font-size: 1.75rem; /* text-2xl */
+    margin-right: 0.75rem; /* mr-3 */
+}
+.flow-step {
+    position: relative;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-align: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    flex: 1;
+    min-width: 160px;
+}
+.flow-step:hover {
+    border-color: #69C9F0;
+    background-color: rgba(105, 201, 240, 0.05);
+}
+.flow-step-content {
+    position: relative;
+    z-index: 10;
+}
+.step-number {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+.flow-step:hover .step-number {
+    color: rgba(105, 201, 240, 0.1);
+}
+.step-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+.flow-step:hover .step-icon {
+    color: #69C9F0;
+}
+.step-title {
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.flow-connector {
+    flex: 1;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.2) 50%, transparent 50%);
+    background-size: 16px 2px;
+    background-repeat: repeat-x;
+}
+@media (max-width: 1023px) {
+    .flow-connector {
+        flex: none;
+        width: 2px;
+        height: 50px;
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 50%, transparent 50%);
+        background-size: 2px 16px;
+        background-repeat: repeat-y;
+    }
+}
+.preview-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    pointer-events: none;
+}
+.group:hover .preview-tooltip {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+}
+</style>
+</head>
+<body class="antialiased">
+
+<header class="bg-[#0A2540] shadow-lg sticky top-0 z-50 border-b border-white/10">
+    <div class="container mx-auto px-6 py-5 text-center relative">
+        <img src="ferro.png" alt="Logo Ferrosider" class="absolute left-6 top-1/2 -translate-y-1/2 h-10 w-auto" style="filter: brightness(0) invert(1);">
+        <h1 class="text-2xl md:text-3xl font-bold text-white">Análisis de Propuestas Website</h1>
+        <p class="text-sm text-gray-300 mt-1">Una Infografía Comparativa para la Toma de Decisiones Estratégicas</p>
+    </div>
+</header>
+
+<nav class="sticky-nav">
+    <div class="container mx-auto px-2 sm:px-6">
+        <div class="overflow-x-auto">
+            <ul class="flex flex-nowrap justify-start sm:justify-center space-x-2 sm:space-x-4 py-2 text-xs sm:text-sm">
+                <li><a href="#introduction" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Introducción</a></li>
+                <li><a href="#contenders" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Competidores</a></li>
+                <li><a href="#scope" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Alcances</a></li>
+                <li><a href="#process" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Proceso</a></li>
+                <li><a href="#support" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Soporte</a></li>
+                <li><a href="#strengths" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Fortalezas</a></li>
+                <li><a href="#conclusion" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Conclusión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container mx-auto p-4 md:p-8 mt-4">
+
+    <section id="introduction" class="mb-16 pt-4">
+        <div class="bg-transparent border-2 border-[#007BFF] rounded-lg shadow-2xl p-8 md:p-12 text-center">
+             <h2 class="text-4xl text-white tracking-tight font-black mb-6">Evaluando el <span class="text-[#69C9F0]">Futuro Digital</span> de Ferrosider</h2>
+            <p class="text-lg md:text-xl max-w-4xl mx-auto leading-relaxed mt-2 text-gray-300">
+                Para la renovación de la presencia online de Ferrosider S.A., se han recibido propuestas de desarrollo web de cuatro agencias: Creativedog, MD Marketing Digital, Vansur y Studio Zeta. Esta infografía interactiva desglosa y compara cada oferta en sus aspectos clave: tecnología, costos, alcances y servicios de soporte. El objetivo es proporcionar una visión clara y completa que facilite una elección informada y estratégica.
+            </p>
+        </div>
+    </section>
+
+    <section id="contenders" class="mb-16 pt-4">
+        <div class="card p-6 md:p-8">
+            <div class="text-center">
+                 <h2 class="text-3xl section-title inline-block">Análisis de Competidores</h2>
+            </div>
+            <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">Un vistazo detallado a cada propuesta, incluyendo su tecnología, costo de inversión y trabajos de referencia.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
+                <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
+                    <div>
+                        <img src="cd.jpeg" alt="Logo Creativedog" class="company-logo-card mx-auto mb-4">
+                        <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">Framer (No-Code)</span></p>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center my-6">
+                        <div>
+                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>3,450 <span class="text-xl text-gray-400">USD</span></p>
+                            <p class="text-sm font-semibold text-gray-300">Desarrollo Completo (Plan Premium)</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 w-full">
+                        <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
+                        <ul class="space-y-3">
+                            <li class="relative group"><a href="https://contractworkplaces.com/web/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Contract Workplaces</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="preview_contract.png" alt="Preview Contract Workplaces" class="rounded-md"></div></li>
+                            <li class="relative group"><a href="https://www.iram.org.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> IRAM</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_iram.png" alt="Preview IRAM" class="rounded-md"></div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
+                    <div>
+                        <img src="md.png" alt="Logo MD Marketing" class="company-logo-card mx-auto mb-4">
+                        <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">PHP / HTML5</span></p>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center my-6">
+                        <div>
+                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,800 <span class="text-xl text-gray-400">USD</span></p>
+                            <p class="text-sm font-semibold text-gray-300">Desarrollo Completo</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 w-full">
+                        <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
+                        <ul class="space-y-3">
+                            <li class="relative group"><a href="https://makita.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Makita Argentina</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_makita.png" alt="Preview Makita" class="rounded-md"></div></li>
+                            <li class="relative group"><a href="https://atomodesinflamante.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Átomo Desinflamante</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_atomo.png" alt="Preview Atomo" class="rounded-md"></div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
+                    <div>
+                        <img src="vs.jpg" alt="Logo Vansur" class="company-logo-card mx-auto mb-4">
+                        <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">WordPress</span></p>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center my-6">
+                        <div>
+                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,255 <span class="text-xl text-gray-400">USD</span></p>
+                            <p class="text-sm font-semibold text-gray-300">Desarrollo Completo (en ARS)</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 w-full">
+                        <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
+                        <ul class="space-y-3">
+                            <li class="relative group"><a href="https://remaxsuma.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> RE/MAX Suma</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_remax.png" alt="Preview Remax" class="rounded-md"></div></li>
+                            <li class="relative group"><a href="https://arteunico.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Arte Único</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_arteunico.png" alt="Preview Arte Unico" class="rounded-md"></div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
+                    <div>
+                        <img src="sz.jpeg" alt="Logo Studio Zeta" class="company-logo-card mx-auto mb-4">
+                        <p class="text-xl font-semibold text-gray-300">Enfoque: <span class="text-[#69C9F0]">Diseño de Identidad</span></p>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center my-6">
+                        <div>
+                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>10,000 <span class="text-xl text-gray-400">USD</span></p>
+                            <p class="text-sm font-semibold text-red-400">Solo Diseño Web</p>
+                            <p class="text-xs text-gray-400 mt-1">(+2,200 USD Identidad)</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 w-full">
+                        <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
+                        <ul class="space-y-3">
+                           <li class="relative group"><a href="https://leguri.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Leguri</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_leguri.png" alt="Preview Leguri" class="rounded-md"></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scope" class="mb-16 pt-4">
+         <div class="card p-6 md:p-8">
+            <div class="text-center">
+                <h2 class="text-3xl section-title inline-block">Comparativa de Alcances y Entregables</h2>
+            </div>
+            <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">El valor de cada propuesta reside en lo que incluye. Esta tabla detalla características clave, permitiendo una comparación directa de los entregables.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-300">
+                    <thead class="text-xs text-white uppercase bg-white/5">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 rounded-tl-lg">Característica</th>
+                            <th scope="col" class="px-6 py-4 text-center"><img src="cd.jpeg" alt="Logo Creativedog" class="h-10 mx-auto"></th>
+                            <th scope="col" class="px-6 py-4 text-center"><img src="md.png" alt="Logo MD Marketing" class="h-10 mx-auto"></th>
+                            <th scope="col" class="px-6 py-4 text-center"><img src="vs.jpg" alt="Logo Vansur" class="h-10 mx-auto"></th>
+                            <th scope="col" class="px-6 py-4 rounded-tr-lg text-center"><img src="sz.jpeg" alt="Logo Studio Zeta" class="h-10 mx-auto"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Tecnología Principal</th><td class="px-6 py-4 text-center">Framer (No-Code)</td><td class="px-6 py-4 text-center">PHP, MySQL, HTML5</td><td class="px-6 py-4 text-center">WordPress</td><td class="px-6 py-4 text-center">Diseño (No prog.)</td></tr>
+                        <tr class="bg-transparent border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Enfoque de Diseño</th><td class="px-6 py-4 text-center">A medida o pre-diseños</td><td class="px-6 py-4 text-center">Basado en theme</td><td class="px-6 py-4 text-center">A medida, adaptado</td><td class="px-6 py-4 text-center">Identidad y Diseño Web</td></tr>
+                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Nº Secciones Base</th><td class="px-6 py-4 text-center">Hasta 8 (Plan Premium)</td><td class="px-6 py-4 text-center">Home + 8 secciones</td><td class="px-6 py-4 text-center">5 + Home + Blog</td><td class="px-6 py-4 text-center">5 (+ legales, error)</td></tr>
+                        <tr class="bg-transparent border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Programación Incluida</th><td class="px-6 py-4 text-center">Sí (Framer)</td><td class="px-6 py-4 text-center">Sí</td><td class="px-6 py-4 text-center">Sí</td><td class="px-6 py-4 text-red-400 font-semibold text-center">No</td></tr>
+                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Tiempo de Entrega (Diseño/Des.)</th><td class="px-6 py-4 text-center">60 días</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 text-center">Máx. 60 días</td><td class="px-6 py-4 text-center">70-100 días (Diseño)</td></tr>
+                         <tr class="bg-transparent"><th scope="row" class="px-6 py-4 font-bold text-white rounded-bl-lg">Costo Identidad Marca</th><td class="px-6 py-4 text-center">Incluido en Diseño UX/UI</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 rounded-br-lg text-center">2200 USD Adicionales</td></tr>
+                    </tbody>
+                </table>
+            </div>
+         </div>
+    </section>
+    
+    <section id="process" class="mb-16 pt-4">
+        <div class="card p-6 md:p-10">
+            <div class="text-center">
+                <h2 class="text-3xl section-title inline-block">El Proceso de Desarrollo Propuesto</h2>
+            </div>
+            <p class="text-center text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed mt-2">Entender el camino desde el inicio hasta el lanzamiento es crucial. La mayoría de las agencias proponen un proceso estructurado por fases. Studio Zeta detalla un timeline específico para diseño, excluyendo la programación.</p>
+            <div class="flex flex-col lg:flex-row justify-center items-center gap-4">
+                <div class="flow-step"><div class="step-number">01</div><div class="flow-step-content"><div class="step-icon">📝</div><div class="step-title">Planificación</div></div></div>
+                <div class="flow-connector"></div>
+                <div class="flow-step"><div class="step-number">02</div><div class="flow-step-content"><div class="step-icon">🎨</div><div class="step-title">Diseño UI/UX</div></div></div>
+                <div class="flow-connector"></div>
+                <div class="flow-step"><div class="step-number">03</div><div class="flow-step-content"><div class="step-icon">💻</div><div class="step-title">Desarrollo</div></div></div>
+                <div class="flow-connector"></div>
+                <div class="flow-step"><div class="step-number">04</div><div class="flow-step-content"><div class="step-icon">✅</div><div class="step-title">Validación</div></div></div>
+                <div class="flow-connector"></div>
+                <div class="flow-step !border-[#007BFF] hover:!border-[#69C9F0]"><div class="step-number">05</div><div class="flow-step-content"><div class="step-icon text-[#69C9F0]">🚀</div><div class="step-title">Lanzamiento</div></div></div>
+            </div>
+             <p class="text-center text-sm text-gray-400 mt-8">Studio Zeta especifica Fase 1 (Brief, Moodboard): ~10 días, Fase 2 (Diseño Identidad y Web): 60-90 días. Fase 3 (Programación): ~60 días (No incluida).</p>
+        </div>
+    </section>
+
+    <section id="support" class="mb-16 pt-4">
+        <div class="card p-6 md:p-8">
+            <div class="text-center">
+                 <h2 class="text-3xl section-title inline-block">Visión a Largo Plazo: Soporte y Mantenimiento</h2>
+            </div>
+            <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">Un sitio web exitoso requiere atención continua. Creativedog y MD Marketing Digital ofrecen planes de soporte mensuales. Vansur y Studio Zeta no detallan planes de mantenimiento en sus ofertas comerciales.</p>
+            <div class="chart-container h-64 max-h-[30vh]">
+                <canvas id="supportChart"></canvas>
+            </div>
+             <p class="text-center text-xs text-gray-500 mt-6">Nota: Costos mensuales en USD (1 USD = 1100 ARS de ref.). Plan "Starter" de Creativedog. Vansur y Studio Zeta no presentan planes comparables.</p>
+        </div>
+    </section>
+
+    <section id="strengths" class="mb-16 pt-4">
+        <div class="card p-6 md:p-8">
+            <div class="text-center">
+                <h2 class="text-3xl section-title inline-block">Fortalezas y Consideraciones Clave</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                    <img src="cd.jpeg" alt="Logo Creativedog" class="company-logo-card mx-auto mb-6">
+                    <ul class="space-y-4 w-full">
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Propuesta completa y detallada.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Tecnología moderna (Framer).</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Inversión inicial y mantenimiento elevados.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Requiere costos de licencia adicionales.</span></li>
+                    </ul>
+                </div>
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                    <img src="md.png" alt="Logo MD Marketing Digital" class="company-logo-card mx-auto mb-6">
+                    <ul class="space-y-4 w-full">
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Opción más económica para el desarrollo.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Mantenimiento mensual claro y en ARS.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Propuesta menos detallada en diseño.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Dependencia de "theme".</span></li>
+                    </ul>
+                </div>
+                 <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                    <img src="vs.jpg" alt="Logo Vansur" class="company-logo-card mx-auto mb-6">
+                    <ul class="space-y-4 w-full">
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Balance costo-beneficio con precio en ARS.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Uso de WordPress (plataforma familiar).</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">No detalla plan de mantenimiento.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Menos explícita en servicios SEO.</span></li>
+                    </ul>
+                </div>
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                    <img src="sz.jpeg" alt="Logo Studio Zeta" class="company-logo-card mx-auto mb-6">
+                    <ul class="space-y-4 w-full">
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Fuerte enfoque en diseño de identidad.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Metodología de diseño muy clara.</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">No incluye programación (costo extra).</span></li>
+                        <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Costo más elevado (Diseño + Identidad).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="conclusion" class="mt-16 mb-8 pt-4">
+        <div class="bg-transparent border-2 border-[#007BFF] rounded-lg shadow-2xl p-8 md:p-12 text-center">
+            <h2 class="text-4xl text-white tracking-tight font-black mb-6">Conclusión: <span class="text-[#69C9F0]">¿Qué Camino Tomar?</span></h2>
+            <p class="text-lg md:text-xl max-w-4xl mx-auto leading-relaxed mt-2 text-gray-300">
+                La elección dependerá de las prioridades de Ferrosider. <strong>Creativedog</strong> ofrece vanguardia tecnológica integral a un costo premium. <strong>MD Marketing Digital</strong> es la ruta más eficiente en costos para el lanzamiento. <strong>Vansur</strong> presenta un balance atractivo con desarrollo en WordPress y precio en ARS. <strong>Studio Zeta</strong> destaca por un profundo enfoque en diseño e identidad, pero requiere contratar programación aparte y representa la inversión más alta solo por diseño. Es crucial evaluar si se necesita un servicio de diseño exclusivo o una solución web integral.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="text-center py-8 text-sm text-gray-400 border-t border-white/10">
+    <p>Infografía generada para Ferrosider S.A. | Junio 2025</p>
+    <p class="mt-1">Diseño y Análisis por IA Asistente</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Smooth scroll for navigation
+        document.querySelectorAll('.sticky-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const tooltipTitleCallback = (tooltipItems) => tooltipItems[0].label;
+
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#BFC9D9', font: { size: 13, family: 'Poppins', weight: '600' }, padding: 20 },
+                },
+                tooltip: {
+                    backgroundColor: '#0A2540',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#E0E6EB',
+                    titleFont: { size: 16, family: 'Poppins', weight: 'bold' },
+                    bodyFont: { size: 14, family: 'Poppins' },
+                    padding: 12, cornerRadius: 4, boxPadding: 4,
+                    callbacks: { title: tooltipTitleCallback }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } },
+                    grid: { display: false, },
+                     border: { color: 'rgba(255, 255, 255, 0.2)' }
+                },
+                y: {
+                    ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)', },
+                    border: { color: 'rgba(255, 255, 255, 0.2)' }
+                }
+            }
+        };
+
+        const ARS_TO_USD_RATE = 1100;
+
+        const supportData = {
+            labels: ['MD Marketing', 'Creativedog'],
+            datasets: [{
+                label: 'Costo Soporte Mensual (USD)',
+                data: [ (350000 / ARS_TO_USD_RATE).toFixed(0), 119 ],
+                backgroundColor: ['#69C9F0', '#0060F2'], // More distinct colors
+                borderColor: 'rgba(26, 43, 64, 0.6)',
+                borderWidth: 2, borderRadius: 4,
+                hoverBackgroundColor: ['#8cd2f2', '#388bf7']
+            }]
+        };
+
+        const supportCtx = document.getElementById('supportChart');
+        if (supportCtx) {
+            try {
+                new Chart(supportCtx, {
+                    type: 'bar', data: supportData,
+                     options: {
+                        ...sharedChartOptions,
+                         indexAxis: 'y',
+                         plugins: {
+                             ...sharedChartOptions.plugins,
+                             legend: { display: false },
+                             tooltip: { ...sharedChartOptions.plugins.tooltip,
+                                 callbacks: {
+                                    title: tooltipTitleCallback,
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.x !== null) { label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x); }
+                                        return label;
+                                    }
+                                 }
+                             }
+                         },
+                        scales: {
+                            y: {
+                                ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12, weight: '600' } },
+                                 grid: { display: false },
+                                 border: { color: 'rgba(255, 255, 255, 0.2)'}
+                            },
+                            x: {
+                                ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 },
+                                    callback: function(value) { return '$' + new Intl.NumberFormat('en-US').format(value); }
+                                },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                border: { color: 'rgba(255, 255, 255, 0.2)'}
+                            }
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Fallo al crear el gráfico de Soporte:", e);
+                const container = supportCtx.parentElement;
+                if(container) container.innerHTML = "<div class='text-center text-red-400 p-4'>Error al cargar el gráfico de Soporte.</div>";
+            }
+        }
+    });
+</script>
+</body>
+</html>
