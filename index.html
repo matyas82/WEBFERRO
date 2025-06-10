@@ -10,34 +10,31 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
+:root {
+    --header-height: 80px; /* Altura estimada del header */
+}
 body {
-font-family: 'Poppins', sans-serif;
-background-color: #0A2540;
-background-image: linear-gradient(180deg, #0A2540 0%, #0E3A5F 100%);
-color: #BFC9D9;
-scroll-padding-top: 140px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0A2540;
+    background-image: linear-gradient(180deg, #0A2540 0%, #0E3A5F 100%);
+    color: #BFC9D9;
+    scroll-padding-top: var(--header-height);
 }
 html {
     scroll-behavior: smooth;
 }
 h1, h2, h3, h4, h5, h6 {
-font-family: 'Poppins', sans-serif;
-color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
 }
 .chart-container {
-position: relative;
-width: 100%;
-max-width: 700px;
-margin-left: auto;
-margin-right: auto;
-height: 400px;
-max-height: 50vh;
-}
-@media (max-width: 768px) {
-.chart-container {
-height: 350px;
-max-height: 55vh;
-}
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    max-height: 50vh;
 }
 .section-title {
     color: #69C9F0;
@@ -60,27 +57,27 @@ max-height: 55vh;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
     border-color: rgba(105, 201, 240, 0.5);
 }
-.sticky-nav {
+.main-header {
     position: sticky;
-    top: 94px;
-    z-index: 40;
-    background-color: rgba(10, 37, 64, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    top: 0;
+    z-index: 50;
+    background-color: rgba(10, 37, 64, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.sticky-nav a {
+.nav-link {
     transition: color 0.3s ease, background-color 0.3s ease;
     font-weight: 600;
     color: #BFC9D9;
 }
-.sticky-nav a:hover {
+.nav-link:hover {
     color: #FFFFFF;
     background-color: rgba(0, 96, 242, 0.3);
 }
 .company-logo-card {
-    height: 80px; /* h-20 */
+    height: 80px;
     width: auto;
     max-width: 180px;
     object-fit: contain;
@@ -96,127 +93,127 @@ max-height: 55vh;
     color: #69C9F0;
     transform: translateX(2px);
 }
-.portfolio-link span {
-    margin-right: 0.5rem;
-    color: #007BFF;
-    transition: color 0.3s ease;
-}
-.portfolio-link:hover span {
-    color: #69C9F0;
-}
 .strength-weakness-icon {
-    font-size: 1.75rem; /* text-2xl */
-    margin-right: 0.75rem; /* mr-3 */
+    font-size: 1.75rem;
+    margin-right: 0.75rem;
 }
 .flow-step {
-    position: relative;
-    padding: 2.5rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.02);
-    border-radius: 0.75rem;
-    overflow: hidden;
-    text-align: center;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-    flex: 1;
-    min-width: 160px;
+    position: relative; padding: 2.5rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.02); border-radius: 0.75rem; overflow: hidden;
+    text-align: center; transition: border-color 0.3s ease, background-color 0.3s ease;
+    flex: 1; min-width: 160px;
 }
 .flow-step:hover {
-    border-color: #69C9F0;
-    background-color: rgba(105, 201, 240, 0.05);
-}
-.flow-step-content {
-    position: relative;
-    z-index: 10;
+    border-color: #69C9F0; background-color: rgba(105, 201, 240, 0.05);
 }
 .step-number {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
-    line-height: 1;
-    z-index: 1;
-    transition: color 0.3s ease;
+    position: absolute; right: -10px; top: -10px; font-size: 5rem; font-weight: 900;
+    color: rgba(255, 255, 255, 0.03); line-height: 1; z-index: 1; transition: color 0.3s ease;
 }
-.flow-step:hover .step-number {
-    color: rgba(105, 201, 240, 0.1);
-}
-.step-icon {
-    font-size: 2.5rem;
-    line-height: 1;
-    margin-bottom: 0.75rem;
-    transition: color 0.3s ease;
-}
-.flow-step:hover .step-icon {
-    color: #69C9F0;
-}
-.step-title {
-    font-weight: 600;
-    color: #FFFFFF;
-}
+.flow-step:hover .step-number { color: rgba(105, 201, 240, 0.1); }
+.step-icon { font-size: 2.5rem; line-height: 1; margin-bottom: 0.75rem; transition: color 0.3s ease; }
+.flow-step:hover .step-icon { color: #69C9F0; }
+.step-title { font-weight: 600; color: #FFFFFF; }
 .flow-connector {
-    flex: 1;
-    height: 2px;
-    background-image: linear-gradient(to right, rgba(255,255,255,0.2) 50%, transparent 50%);
-    background-size: 16px 2px;
-    background-repeat: repeat-x;
-}
-@media (max-width: 1023px) {
-    .flow-connector {
-        flex: none;
-        width: 2px;
-        height: 50px;
-        background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 50%, transparent 50%);
-        background-size: 2px 16px;
-        background-repeat: repeat-y;
-    }
+    flex: 1; height: 2px; background-image: linear-gradient(to right, rgba(255,255,255,0.2) 50%, transparent 50%);
+    background-size: 16px 2px; background-repeat: repeat-x;
 }
 .preview-tooltip {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-    pointer-events: none;
+    visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0s 0.3s; pointer-events: none;
+    position: absolute; z-index: 20; width: 220px; padding: 4px; background-color: white;
+    border: 1px solid #ccc; border-radius: 0.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    /* Mobile-first: position tooltip above the link */
+    bottom: 110%; left: 50%; transform: translateX(-50%);
 }
-.group:hover .preview-tooltip {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    pointer-events: auto;
+.preview-tooltip img { border-radius: 0.375rem; }
+.group:hover .preview-tooltip { visibility: visible; opacity: 1; transition: opacity 0.3s ease; pointer-events: auto; }
+
+/* --- Responsive Table --- */
+@media (max-width: 768px) {
+    .responsive-table thead { display: none; }
+    .responsive-table tr {
+        display: block; border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0.75rem; margin-bottom: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.04);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .responsive-table td {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.75rem 1rem; text-align: right;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .responsive-table td:last-child { border-bottom: none; }
+    .responsive-table td::before {
+        content: attr(data-label); font-weight: 600; color: #FFFFFF;
+        text-align: left; padding-right: 1rem;
+    }
+    .responsive-table th[scope="row"] { display: none; }
+    .company-header-cell {
+        display: flex; flex-direction: column; align-items: center;
+        padding: 1rem; background-color: rgba(0, 96, 242, 0.1);
+        border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;
+        border-bottom: 1px solid rgba(0, 96, 242, 0.3);
+    }
+    .chart-container { height: 350px; max-height: 55vh; }
+    .flow-connector {
+        flex: none; width: 2px; height: 50px;
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 50%, transparent 50%);
+        background-size: 2px 16px; background-repeat: repeat-y;
+    }
+}
+/* --- Desktop Tooltip Positioning --- */
+@media (min-width: 1024px) {
+    .group.tooltip-right .preview-tooltip {
+        left: 100%; top: 50%; transform: translateY(-50%);
+        bottom: auto; margin-left: 1rem;
+    }
+    .group.tooltip-left .preview-tooltip {
+        right: 100%; left: auto; top: 50%; transform: translateY(-50%);
+        bottom: auto; margin-right: 1rem;
+    }
 }
 </style>
 </head>
 <body class="antialiased">
 
-<header class="bg-[#0A2540] shadow-lg sticky top-0 z-50 border-b border-white/10">
-    <div class="container mx-auto px-6 py-5 text-center relative">
-        <img src="ferro.png" alt="Logo Ferrosider" class="absolute left-6 top-1/2 -translate-y-1/2 h-10 w-auto" style="filter: brightness(0) invert(1);">
-        <h1 class="text-2xl md:text-3xl font-bold text-white">Análisis de Propuestas Website</h1>
-        <p class="text-sm text-gray-300 mt-1">Una Infografía Comparativa para la Toma de Decisiones Estratégicas</p>
+<header class="main-header">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-20">
+            <div class="flex-shrink-0">
+                <img src="ferro.png" alt="Logo Ferrosider" class="h-10 w-auto" style="filter: brightness(0) invert(1);">
+            </div>
+            <div class="hidden md:block text-center">
+                 <h1 class="text-2xl font-bold text-white leading-tight">Análisis de Propuestas Website</h1>
+                 <p class="text-xs text-gray-300">Infografía Comparativa Estratégica</p>
+            </div>
+            <div class="md:hidden">
+                </div>
+        </div>
+        <nav>
+            <div class="overflow-x-auto">
+                <ul class="flex flex-nowrap justify-start sm:justify-center space-x-2 sm:space-x-4 py-2 text-xs sm:text-sm">
+                    <li><a href="#introduction" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Introducción</a></li>
+                    <li><a href="#contenders" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Competidores</a></li>
+                    <li><a href="#scope" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Alcances</a></li>
+                    <li><a href="#process" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Proceso</a></li>
+                    <li><a href="#support" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Soporte</a></li>
+                    <li><a href="#strengths" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Fortalezas</a></li>
+                    <li><a href="#conclusion" class="nav-link px-2 py-1 sm:px-3 sm:py-2 rounded-md">Conclusión</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
-
-<nav class="sticky-nav">
-    <div class="container mx-auto px-2 sm:px-6">
-        <div class="overflow-x-auto">
-            <ul class="flex flex-nowrap justify-start sm:justify-center space-x-2 sm:space-x-4 py-2 text-xs sm:text-sm">
-                <li><a href="#introduction" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Introducción</a></li>
-                <li><a href="#contenders" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Competidores</a></li>
-                <li><a href="#scope" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Alcances</a></li>
-                <li><a href="#process" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Proceso</a></li>
-                <li><a href="#support" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Soporte</a></li>
-                <li><a href="#strengths" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Fortalezas</a></li>
-                <li><a href="#conclusion" class="px-2 py-1 sm:px-3 sm:py-2 rounded-md">Conclusión</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <main class="container mx-auto p-4 md:p-8 mt-4">
 
     <section id="introduction" class="mb-16 pt-4">
-        <div class="bg-transparent border-2 border-[#007BFF] rounded-lg shadow-2xl p-8 md:p-12 text-center">
-             <h2 class="text-4xl text-white tracking-tight font-black mb-6">Evaluando el <span class="text-[#69C9F0]">Futuro Digital</span> de Ferrosider</h2>
+        <div class="text-center md:hidden px-4">
+            <h1 class="text-3xl font-bold text-white">Análisis de Propuestas</h1>
+            <p class="text-sm text-gray-300 mt-1">Infografía Comparativa para Ferrosider</p>
+        </div>
+        <div class="bg-transparent border-2 border-[#007BFF] rounded-lg shadow-2xl p-8 md:p-12 text-center mt-6 md:mt-0">
+             <h2 class="text-3xl md:text-4xl text-white tracking-tight font-black mb-6">Evaluando el <span class="text-[#69C9F0]">Futuro Digital</span> de Ferrosider</h2>
             <p class="text-lg md:text-xl max-w-4xl mx-auto leading-relaxed mt-2 text-gray-300">
                 Para la renovación de la presencia online de Ferrosider S.A., se han recibido propuestas de desarrollo web de cuatro agencias: Creativedog, MD Marketing Digital, Vansur y Studio Zeta. Esta infografía interactiva desglosa y compara cada oferta en sus aspectos clave: tecnología, costos, alcances y servicios de soporte. El objetivo es proporcionar una visión clara y completa que facilite una elección informada y estratégica.
             </p>
@@ -231,70 +228,62 @@ max-height: 55vh;
             <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">Un vistazo detallado a cada propuesta, incluyendo su tecnología, costo de inversión y trabajos de referencia.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
                 <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
-                    <div>
-                        <img src="cd.jpeg" alt="Logo Creativedog" class="company-logo-card mx-auto mb-4">
+                    <div><img src="cd.jpeg" alt="Logo Creativedog" class="company-logo-card mx-auto mb-4">
                         <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">Framer (No-Code)</span></p>
                     </div>
                     <div class="flex-grow flex items-center justify-center my-6">
-                        <div>
-                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>3,450 <span class="text-xl text-gray-400">USD</span></p>
+                        <div><p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>3,450 <span class="text-xl text-gray-400">USD</span></p>
                             <p class="text-sm font-semibold text-gray-300">Desarrollo Completo (Plan Premium)</p>
                         </div>
                     </div>
                     <div class="pt-4 border-t border-white/10 w-full">
                         <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
                         <ul class="space-y-3">
-                            <li class="relative group"><a href="https://contractworkplaces.com/web/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Contract Workplaces</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="preview_contract.png" alt="Preview Contract Workplaces" class="rounded-md"></div></li>
-                            <li class="relative group"><a href="https://www.iram.org.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> IRAM</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_iram.png" alt="Preview IRAM" class="rounded-md"></div></li>
+                            <li class="relative group tooltip-right"><a href="https://contractworkplaces.com/web/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Contract Workplaces</a><div class="preview-tooltip"><img src="preview_contract.png" alt="Preview Contract Workplaces"></div></li>
+                            <li class="relative group tooltip-right"><a href="https://www.iram.org.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> IRAM</a><div class="preview-tooltip"><img src="Preview_iram.png" alt="Preview IRAM"></div></li>
                         </ul>
                     </div>
                 </div>
                 <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
-                    <div>
-                        <img src="md.png" alt="Logo MD Marketing" class="company-logo-card mx-auto mb-4">
+                    <div><img src="md.png" alt="Logo MD Marketing" class="company-logo-card mx-auto mb-4">
                         <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">PHP / HTML5</span></p>
                     </div>
                     <div class="flex-grow flex items-center justify-center my-6">
-                        <div>
-                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,800 <span class="text-xl text-gray-400">USD</span></p>
+                        <div><p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,800 <span class="text-xl text-gray-400">USD</span></p>
                             <p class="text-sm font-semibold text-gray-300">Desarrollo Completo</p>
                         </div>
                     </div>
                     <div class="pt-4 border-t border-white/10 w-full">
                         <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
                         <ul class="space-y-3">
-                            <li class="relative group"><a href="https://makita.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Makita Argentina</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_makita.png" alt="Preview Makita" class="rounded-md"></div></li>
-                            <li class="relative group"><a href="https://atomodesinflamante.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Átomo Desinflamante</a><div class="preview-tooltip absolute left-full ml-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_atomo.png" alt="Preview Atomo" class="rounded-md"></div></li>
+                            <li class="relative group tooltip-right"><a href="https://makita.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Makita Argentina</a><div class="preview-tooltip"><img src="Preview_makita.png" alt="Preview Makita"></div></li>
+                            <li class="relative group tooltip-right"><a href="https://atomodesinflamante.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Átomo Desinflamante</a><div class="preview-tooltip"><img src="Preview_atomo.png" alt="Preview Atomo"></div></li>
                         </ul>
                     </div>
                 </div>
                 <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
-                    <div>
-                        <img src="vs.jpg" alt="Logo Vansur" class="company-logo-card mx-auto mb-4">
+                    <div><img src="vs.jpg" alt="Logo Vansur" class="company-logo-card mx-auto mb-4">
                         <p class="text-xl font-semibold text-gray-300">Tecnología: <span class="text-[#69C9F0]">WordPress</span></p>
                     </div>
                     <div class="flex-grow flex items-center justify-center my-6">
-                        <div>
-                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,255 <span class="text-xl text-gray-400">USD</span></p>
+                        <div><p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>1,255 <span class="text-xl text-gray-400">USD</span></p>
                             <p class="text-sm font-semibold text-gray-300">Desarrollo Completo (en ARS)</p>
                         </div>
                     </div>
                     <div class="pt-4 border-t border-white/10 w-full">
                         <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
                         <ul class="space-y-3">
-                            <li class="relative group"><a href="https://remaxsuma.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> RE/MAX Suma</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_remax.png" alt="Preview Remax" class="rounded-md"></div></li>
-                            <li class="relative group"><a href="https://arteunico.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Arte Único</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_arteunico.png" alt="Preview Arte Unico" class="rounded-md"></div></li>
+                            <li class="relative group tooltip-left"><a href="https://remaxsuma.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> RE/MAX Suma</a><div class="preview-tooltip"><img src="Preview_remax.png" alt="Preview Remax"></div></li>
+                            <li class="relative group tooltip-left"><a href="https://arteunico.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Arte Único</a><div class="preview-tooltip"><img src="Preview_arteunico.png" alt="Preview Arte Unico"></div></li>
                         </ul>
                     </div>
                 </div>
                 <div class="card !bg-white/5 p-6 rounded-lg flex flex-col text-center h-full relative z-10 hover:z-30">
-                    <div>
-                        <img src="sz.jpeg" alt="Logo Studio Zeta" class="company-logo-card mx-auto mb-4">
+                    <div><img src="sz.jpeg" alt="Logo Studio Zeta" class="company-logo-card mx-auto mb-4">
                         <p class="text-xl font-semibold text-gray-300">Enfoque: <span class="text-[#69C9F0]">Diseño de Identidad</span></p>
                     </div>
                     <div class="flex-grow flex items-center justify-center my-6">
-                        <div>
-                            <p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>10,000 <span class="text-xl text-gray-400">USD</span></p>
+                        <div><p class="text-5xl font-bold text-white"><span class="text-3xl align-top text-gray-400">$</span>10,000 <span class="text-xl text-gray-400">USD</span></p>
                             <p class="text-sm font-semibold text-red-400">Solo Diseño Web</p>
                             <p class="text-xs text-gray-400 mt-1">(+2,200 USD Identidad)</p>
                         </div>
@@ -302,7 +291,7 @@ max-height: 55vh;
                     <div class="pt-4 border-t border-white/10 w-full">
                         <h4 class="font-bold text-lg mb-3 text-white">Portfolio</h4>
                         <ul class="space-y-3">
-                           <li class="relative group"><a href="https://leguri.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Leguri</a><div class="preview-tooltip absolute right-full mr-4 top-1/2 -translate-y-1/2 z-20 w-64 p-1 bg-white border border-gray-300 rounded-lg shadow-xl"><img src="Preview_leguri.png" alt="Preview Leguri" class="rounded-md"></div></li>
+                           <li class="relative group tooltip-left"><a href="https://leguri.com.ar/" target="_blank" rel="noopener noreferrer" class="portfolio-link text-base justify-center"><span>🔗</span> Leguri</a><div class="preview-tooltip"><img src="Preview_leguri.png" alt="Preview Leguri"></div></li>
                         </ul>
                     </div>
                 </div>
@@ -313,27 +302,67 @@ max-height: 55vh;
     <section id="scope" class="mb-16 pt-4">
          <div class="card p-6 md:p-8">
             <div class="text-center">
-                <h2 class="text-3xl section-title inline-block">Comparativa de Alcances y Entregables</h2>
+                <h2 class="text-3xl section-title inline-block">Comparativa de Alcances</h2>
             </div>
             <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">El valor de cada propuesta reside en lo que incluye. Esta tabla detalla características clave, permitiendo una comparación directa de los entregables.</p>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto responsive-table">
                 <table class="w-full text-sm text-left text-gray-300">
                     <thead class="text-xs text-white uppercase bg-white/5">
                         <tr>
                             <th scope="col" class="px-6 py-4 rounded-tl-lg">Característica</th>
-                            <th scope="col" class="px-6 py-4 text-center"><img src="cd.jpeg" alt="Logo Creativedog" class="h-10 mx-auto"></th>
-                            <th scope="col" class="px-6 py-4 text-center"><img src="md.png" alt="Logo MD Marketing" class="h-10 mx-auto"></th>
-                            <th scope="col" class="px-6 py-4 text-center"><img src="vs.jpg" alt="Logo Vansur" class="h-10 mx-auto"></th>
-                            <th scope="col" class="px-6 py-4 rounded-tr-lg text-center"><img src="sz.jpeg" alt="Logo Studio Zeta" class="h-10 mx-auto"></th>
+                            <th scope="col" class="px-6 py-4 text-center">Creativedog</th>
+                            <th scope="col" class="px-6 py-4 text-center">MD Marketing</th>
+                            <th scope="col" class="px-6 py-4 text-center">Vansur</th>
+                            <th scope="col" class="px-6 py-4 rounded-tr-lg text-center">Studio Zeta</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Tecnología Principal</th><td class="px-6 py-4 text-center">Framer (No-Code)</td><td class="px-6 py-4 text-center">PHP, MySQL, HTML5</td><td class="px-6 py-4 text-center">WordPress</td><td class="px-6 py-4 text-center">Diseño (No prog.)</td></tr>
-                        <tr class="bg-transparent border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Enfoque de Diseño</th><td class="px-6 py-4 text-center">A medida o pre-diseños</td><td class="px-6 py-4 text-center">Basado en theme</td><td class="px-6 py-4 text-center">A medida, adaptado</td><td class="px-6 py-4 text-center">Identidad y Diseño Web</td></tr>
-                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Nº Secciones Base</th><td class="px-6 py-4 text-center">Hasta 8 (Plan Premium)</td><td class="px-6 py-4 text-center">Home + 8 secciones</td><td class="px-6 py-4 text-center">5 + Home + Blog</td><td class="px-6 py-4 text-center">5 (+ legales, error)</td></tr>
-                        <tr class="bg-transparent border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Programación Incluida</th><td class="px-6 py-4 text-center">Sí (Framer)</td><td class="px-6 py-4 text-center">Sí</td><td class="px-6 py-4 text-center">Sí</td><td class="px-6 py-4 text-red-400 font-semibold text-center">No</td></tr>
-                        <tr class="bg-white/5 border-b border-white/10"><th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap">Tiempo de Entrega (Diseño/Des.)</th><td class="px-6 py-4 text-center">60 días</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 text-center">Máx. 60 días</td><td class="px-6 py-4 text-center">70-100 días (Diseño)</td></tr>
-                         <tr class="bg-transparent"><th scope="row" class="px-6 py-4 font-bold text-white rounded-bl-lg">Costo Identidad Marca</th><td class="px-6 py-4 text-center">Incluido en Diseño UX/UI</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 text-center">No especificado</td><td class="px-6 py-4 rounded-br-lg text-center">2200 USD Adicionales</td></tr>
+                        <tr class="border-b border-white/10">
+                            <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Tecnología Principal</th>
+                            <td data-label="Creativedog" class="company-header-cell md:hidden"><img src="cd.jpeg" alt="Logo Creativedog" class="h-10 mx-auto mb-2"><span class="font-bold text-white">Creativedog</span></td>
+                            <td data-label="Tecnología">Framer (No-Code)</td>
+                            <td data-label="MD Marketing" class="company-header-cell md:hidden"><img src="md.png" alt="Logo MD Marketing" class="h-10 mx-auto mb-2"><span class="font-bold text-white">MD Marketing</span></td>
+                            <td data-label="Tecnología">PHP, MySQL, HTML5</td>
+                            <td data-label="Vansur" class="company-header-cell md:hidden"><img src="vs.jpg" alt="Logo Vansur" class="h-10 mx-auto mb-2"><span class="font-bold text-white">Vansur</span></td>
+                            <td data-label="Tecnología">WordPress</td>
+                            <td data-label="Studio Zeta" class="company-header-cell md:hidden"><img src="sz.jpeg" alt="Logo Studio Zeta" class="h-10 mx-auto mb-2"><span class="font-bold text-white">Studio Zeta</span></td>
+                            <td data-label="Tecnología">Diseño (No prog.)</td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                            <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Enfoque de Diseño</th>
+                            <td data-label="Diseño">A medida o pre-diseños</td>
+                            <td data-label="Diseño">Basado en theme</td>
+                            <td data-label="Diseño">A medida, adaptado</td>
+                            <td data-label="Diseño">Identidad y Diseño Web</td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                             <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Nº Secciones Base</th>
+                            <td data-label="Secciones">Hasta 8 (Plan Premium)</td>
+                            <td data-label="Secciones">Home + 8 secciones</td>
+                            <td data-label="Secciones">5 + Home + Blog</td>
+                            <td data-label="Secciones">5 (+ legales, error)</td>
+                        </tr>
+                        <tr class="border-b border-white/10">
+                            <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Programación Incluida</th>
+                            <td data-label="Programación">Sí (Framer)</td>
+                            <td data-label="Programación">Sí</td>
+                            <td data-label="Programación">Sí</td>
+                            <td data-label="Programación" class="text-red-400 font-semibold">No</td>
+                        </tr>
+                         <tr class="border-b border-white/10">
+                            <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Tiempo de Entrega</th>
+                            <td data-label="Entrega">60 días</td>
+                            <td data-label="Entrega">No especificado</td>
+                            <td data-label="Entrega">Máx. 60 días</td>
+                            <td data-label="Entrega">70-100 días (Diseño)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="px-6 py-4 font-bold text-white whitespace-nowrap bg-white/5 md:bg-transparent">Costo Identidad Marca</th>
+                            <td data-label="Identidad">Incluido en Diseño UX/UI</td>
+                            <td data-label="Identidad">No especificado</td>
+                            <td data-label="Identidad">No especificado</td>
+                            <td data-label="Identidad" class="text-amber-400">2200 USD Adicionales</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -364,10 +393,10 @@ max-height: 55vh;
     <section id="support" class="mb-16 pt-4">
         <div class="card p-6 md:p-8">
             <div class="text-center">
-                 <h2 class="text-3xl section-title inline-block">Visión a Largo Plazo: Soporte y Mantenimiento</h2>
+                 <h2 class="text-3xl section-title inline-block">Soporte y Mantenimiento</h2>
             </div>
-            <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">Un sitio web exitoso requiere atención continua. Creativedog y MD Marketing Digital ofrecen planes de soporte mensuales. Vansur y Studio Zeta no detallan planes de mantenimiento en sus ofertas comerciales.</p>
-            <div class="chart-container h-64 max-h-[30vh]">
+            <p class="text-center text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed mt-2">Un sitio web exitoso requiere atención continua. Creativedog y MD Marketing Digital ofrecen planes de soporte mensuales. Vansur y Studio Zeta no detallan planes de mantenimiento.</p>
+            <div class="chart-container h-64 max-h-[30vh] md:h-auto md:max-h-[50vh]">
                 <canvas id="supportChart"></canvas>
             </div>
              <p class="text-center text-xs text-gray-500 mt-6">Nota: Costos mensuales en USD (1 USD = 1100 ARS de ref.). Plan "Starter" de Creativedog. Vansur y Studio Zeta no presentan planes comparables.</p>
@@ -377,10 +406,10 @@ max-height: 55vh;
     <section id="strengths" class="mb-16 pt-4">
         <div class="card p-6 md:p-8">
             <div class="text-center">
-                <h2 class="text-3xl section-title inline-block">Fortalezas y Consideraciones Clave</h2>
+                <h2 class="text-3xl section-title inline-block">Fortalezas y Consideraciones</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
-                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5 text-center md:text-left">
                     <img src="cd.jpeg" alt="Logo Creativedog" class="company-logo-card mx-auto mb-6">
                     <ul class="space-y-4 w-full">
                         <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Propuesta completa y detallada.</span></li>
@@ -389,7 +418,7 @@ max-height: 55vh;
                         <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Requiere costos de licencia adicionales.</span></li>
                     </ul>
                 </div>
-                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5 text-center md:text-left">
                     <img src="md.png" alt="Logo MD Marketing Digital" class="company-logo-card mx-auto mb-6">
                     <ul class="space-y-4 w-full">
                         <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Opción más económica para el desarrollo.</span></li>
@@ -398,7 +427,7 @@ max-height: 55vh;
                         <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Dependencia de "theme".</span></li>
                     </ul>
                 </div>
-                 <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                 <div class="card p-6 flex flex-col items-center h-full !bg-white/5 text-center md:text-left">
                     <img src="vs.jpg" alt="Logo Vansur" class="company-logo-card mx-auto mb-6">
                     <ul class="space-y-4 w-full">
                         <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Balance costo-beneficio con precio en ARS.</span></li>
@@ -407,7 +436,7 @@ max-height: 55vh;
                         <li class="flex items-start"><span class="strength-weakness-icon text-orange-400">⚠️</span><span class="text-gray-300 leading-relaxed">Menos explícita en servicios SEO.</span></li>
                     </ul>
                 </div>
-                <div class="card p-6 flex flex-col items-center h-full !bg-white/5">
+                <div class="card p-6 flex flex-col items-center h-full !bg-white/5 text-center md:text-left">
                     <img src="sz.jpeg" alt="Logo Studio Zeta" class="company-logo-card mx-auto mb-6">
                     <ul class="space-y-4 w-full">
                         <li class="flex items-start"><span class="strength-weakness-icon text-green-400">✅</span><span class="text-gray-300 leading-relaxed">Fuerte enfoque en diseño de identidad.</span></li>
@@ -439,60 +468,41 @@ max-height: 55vh;
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Smooth scroll for navigation
-        document.querySelectorAll('.sticky-nav a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement){
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
 
+        // Chart.js implementation
         const tooltipTitleCallback = (tooltipItems) => tooltipItems[0].label;
-
         const sharedChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: { color: '#BFC9D9', font: { size: 13, family: 'Poppins', weight: '600' }, padding: 20 },
-                },
+                legend: { position: 'bottom', labels: { color: '#BFC9D9', font: { size: 13, family: 'Poppins', weight: '600' }, padding: 20 }, },
                 tooltip: {
-                    backgroundColor: '#0A2540',
-                    titleColor: '#FFFFFF',
-                    bodyColor: '#E0E6EB',
-                    titleFont: { size: 16, family: 'Poppins', weight: 'bold' },
-                    bodyFont: { size: 14, family: 'Poppins' },
-                    padding: 12, cornerRadius: 4, boxPadding: 4,
-                    callbacks: { title: tooltipTitleCallback }
+                    backgroundColor: '#0A2540', titleColor: '#FFFFFF', bodyColor: '#E0E6EB',
+                    titleFont: { size: 16, family: 'Poppins', weight: 'bold' }, bodyFont: { size: 14, family: 'Poppins' },
+                    padding: 12, cornerRadius: 4, boxPadding: 4, callbacks: { title: tooltipTitleCallback }
                 }
             },
             scales: {
-                x: {
-                    ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } },
-                    grid: { display: false, },
-                     border: { color: 'rgba(255, 255, 255, 0.2)' }
-                },
-                y: {
-                    ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)', },
-                    border: { color: 'rgba(255, 255, 255, 0.2)' }
-                }
+                x: { ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } }, grid: { display: false, }, border: { color: 'rgba(255, 255, 255, 0.2)' } },
+                y: { ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 } }, grid: { color: 'rgba(255, 255, 255, 0.1)', }, border: { color: 'rgba(255, 255, 255, 0.2)' } }
             }
         };
 
         const ARS_TO_USD_RATE = 1100;
-
         const supportData = {
             labels: ['MD Marketing', 'Creativedog'],
             datasets: [{
-                label: 'Costo Soporte Mensual (USD)',
-                data: [ (350000 / ARS_TO_USD_RATE).toFixed(0), 119 ],
-                backgroundColor: ['#69C9F0', '#0060F2'], // More distinct colors
-                borderColor: 'rgba(26, 43, 64, 0.6)',
-                borderWidth: 2, borderRadius: 4,
-                hoverBackgroundColor: ['#8cd2f2', '#388bf7']
+                label: 'Costo Soporte Mensual (USD)', data: [ (350000 / ARS_TO_USD_RATE).toFixed(0), 119 ],
+                backgroundColor: ['#69C9F0', '#0060F2'], borderColor: 'rgba(26, 43, 64, 0.6)',
+                borderWidth: 2, borderRadius: 4, hoverBackgroundColor: ['#8cd2f2', '#388bf7']
             }]
         };
 
@@ -501,18 +511,13 @@ max-height: 55vh;
             try {
                 new Chart(supportCtx, {
                     type: 'bar', data: supportData,
-                     options: {
-                        ...sharedChartOptions,
-                         indexAxis: 'y',
-                         plugins: {
-                             ...sharedChartOptions.plugins,
-                             legend: { display: false },
+                     options: { ...sharedChartOptions, indexAxis: 'y',
+                         plugins: { ...sharedChartOptions.plugins, legend: { display: false },
                              tooltip: { ...sharedChartOptions.plugins.tooltip,
                                  callbacks: {
                                     title: tooltipTitleCallback,
                                     label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) { label += ': '; }
+                                        let label = context.dataset.label || ''; if (label) { label += ': '; }
                                         if (context.parsed.x !== null) { label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x); }
                                         return label;
                                     }
@@ -520,17 +525,9 @@ max-height: 55vh;
                              }
                          },
                         scales: {
-                            y: {
-                                ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12, weight: '600' } },
-                                 grid: { display: false },
-                                 border: { color: 'rgba(255, 255, 255, 0.2)'}
-                            },
-                            x: {
-                                ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 },
-                                    callback: function(value) { return '$' + new Intl.NumberFormat('en-US').format(value); }
-                                },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                                border: { color: 'rgba(255, 255, 255, 0.2)'}
+                            y: { ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12, weight: '600' } }, grid: { display: false }, border: { color: 'rgba(255, 255, 255, 0.2)'} },
+                            x: { ticks: { color: '#BFC9D9', font: { family: 'Poppins', size: 12 }, callback: function(value) { return '$' + new Intl.NumberFormat('en-US').format(value); } },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' }, border: { color: 'rgba(255, 255, 255, 0.2)'}
                             }
                         }
                     }
@@ -538,7 +535,7 @@ max-height: 55vh;
             } catch (e) {
                 console.error("Fallo al crear el gráfico de Soporte:", e);
                 const container = supportCtx.parentElement;
-                if(container) container.innerHTML = "<div class='text-center text-red-400 p-4'>Error al cargar el gráfico de Soporte.</div>";
+                if(container) container.innerHTML = "<div class='text-center text-red-400 p-4'>Error al cargar el gráfico.</div>";
             }
         }
     });
